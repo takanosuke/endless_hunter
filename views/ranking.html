@@ -1,0 +1,25 @@
+{{template "header" .}}
+<h1><img src="/assets/images/rank.png" width="60" height="60" alt="王冠"> Ranking</h1>
+<div class="row justify-content-sm-center">
+    <div class="col-sm-8">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item ">
+                <div class="row">
+                    <div class="col-sm-2"><h5 class="text-center">RANK</h5></div>
+                    <div class="col-sm-8"><h5 class="text-center">Name</h5></div>
+                    <div class="col-sm-2"><h5 class="text-center">Score</h5></div>
+                </div>
+            </li>
+            {{range $i, $d := .Data}}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-2 text-center">{{add $i 1}}位</div>
+                        <div class="col-sm-8 text-center">{{$d.Name}}</div>
+                        <div class="col-sm-2 text-center">{{$d.Value}}</div>
+                    </div>
+                </li>
+            {{end}}
+        </ul>
+    </div>
+</div>
+{{template "footer"}}

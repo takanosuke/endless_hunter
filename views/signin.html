@@ -1,0 +1,24 @@
+{{template "header" .}}
+<h1>Sign In</h1>
+<br>
+<form action="/signin" method="post">
+    <h5 class="text-danger">{{.ErrorMessage}}</h5>
+
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" id="email" name="email" value="{{.Email}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="pw" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-6">
+            <input type="password" class="form-control" id="pw" name="pw" value="">
+        </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Sign In</button>
+</form>
+<br>
+<a href="./signup">Sign Up</a>
+{{template "footer"}}

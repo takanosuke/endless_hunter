@@ -1,0 +1,28 @@
+{{template "header" .}}
+<p>Now: {{.Time.Format "2006/1/2 15:04:05"}}</p>
+<form action="/signout" method="post">
+    <button type="submit" class="btn btn-secondary">Sign Out</button>
+</form>
+<h1>Article List  <a href="./create" class="btn btn-primary">Create</a></h1>
+<div class="row">
+    <div class="col-sm-6">
+        <ul class="list-group list-group-flush">
+            {{range $d := .Data}}
+                <li class="list-group-item">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">{{$d.User.Name}}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{$d.Title}}</h5>
+                            <p class="card-text">{{$d.Body}}</p>
+                            <form action="./delete/{{$d.ID}}" method="post">
+                                <div class="text-right"><button type="submit" class="btn btn-secondary">Delete</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            {{end}}
+        </ul>
+    </div>
+</div>
+
+{{template "footer"}}

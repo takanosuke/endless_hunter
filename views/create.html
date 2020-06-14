@@ -1,0 +1,18 @@
+{{template "header" .}}
+<h1>Create Article</h1>
+<form action="/create" method="POST">
+    <p>{{.ErrorMessage}}</p>
+    <div class="form-group row">
+        <div class="col-6">
+            <label for="title">Enter Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="" value="{{.Title}}">
+            <br>
+            <label for="body">Enter Body</label>
+            <textarea rows="6" name="body" class="form-control" id="body" placeholder="" value="{{.Body}}"></textarea>
+            <br>
+            <input type="submit" value="作成" class="btn btn-primary mx-auto">
+        </div>
+    </div>
+</form>
+<div class="text-center"></div><a href="/">TOP</a></div>
+{{template "footer"}}
