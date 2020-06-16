@@ -33,13 +33,6 @@ class SceneLoading extends Phaser.Scene {
       style: {font: '18px monospace',fill: '#ffffff'}
     });
     percentText.setOrigin(0.5, 0.5);
-
-    // this.load.on('progress', function (value) {
-    //   percentText.setText(parseInt(value * 100) + '%');
-    //   progressBar.clear();
-    //   progressBar.fillStyle(0xffffff, 1);
-    //   progressBar.fillRect((width/2)-(progressWidth/2), (height/2)-(progressHeight/2), progressWidth * value, progressHeight);
-    // });
     let value = 0;
     this.load.on('filecomplete', function () {
       value += 1 / 19
