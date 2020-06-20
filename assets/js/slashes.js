@@ -4,7 +4,7 @@ class Slash extends Phaser.Physics.Arcade.Sprite {
     this.scene = scene
   }
   attack(x, y, d, w, h, v, color) {
-    this.enableBody(true, x + (30 * d), y, true, true);
+    this.enableBody(true, x + (35 * d), y, true, true);
     this.body.setAllowGravity(false)
     this.setVelocityX(v * d);
     this.flipX = (d == 1) ? true : false;

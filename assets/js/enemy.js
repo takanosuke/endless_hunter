@@ -10,9 +10,9 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
     this.anims.play('turnEnemy', true).setScale(2);
     this.setBounce(1);
-    p = Math.min(50, p);
-    let xv = Phaser.Math.Between(-100 + (-1 * p * 25), 100 + (p * 25));
-    let yv = Phaser.Math.Between(-100 + (-1 * p * 25), 100 + (p * 25));
+    p = Math.min(70, p);
+    let xv = Phaser.Math.Between(-100 + (-1 * p * 20), 100 + (p * 20));
+    let yv = Phaser.Math.Between(-100 + (-1 * p * 20), 100 + (p * 20));
     let level = Math.abs(xv)+Math.abs(yv);
     if (level > 2000) {
       this.setTint(0xff3333);

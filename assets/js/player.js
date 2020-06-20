@@ -25,7 +25,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     super.preUpdate(time, delta);
     if (this.body.touching.down) { this.jflag = true; }
     if (Phaser.Input.Keyboard.JustDown(this.xKey)) {
-      this.slashes.slashAttack(this.x, this.y, this.direction, 0.2, 0.4, 100, 0xff6600);
+      this.slashes.slashAttack(this.x, this.y, this.direction, 0.5, 0.4, 100, 0xff6600);
     }
     if (this.cursors.left.isDown) {
       this.setVelocityX(-250);

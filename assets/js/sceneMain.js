@@ -4,6 +4,8 @@ class SceneMain extends Phaser.Scene {
     }
     init() {
         this.gameOver = false;
+        this.enemy_pop_point = [[100, 100], [100, height-100], [width-100, 100], [width-100, height-100]]
+        this.player_initial_point = [width/2, height/2 -100]
         this.score = 0;
         let bgmKeys = ['mainBGM1', 'mainBGM2', 'mainBGM3'];
         this.bgm = this.sound.add(bgmKeys[Phaser.Math.Between(0, 2)]);
@@ -14,24 +16,28 @@ class SceneMain extends Phaser.Scene {
         // Create Stage Object
         this.add.image((width / 2), (height / 2), 'mainBack').setDisplaySize(width, height);
         let blackHole = this.physics.add.staticGroup();
-        blackHole.create(800, 100, 'blackHole').play('blackHole');
-        blackHole.create(800, 400, 'blackHole').play('blackHole');
+
+        blackHole.create(this.enemy_pop_point[0][0], this.enemy_pop_point[0][1], 'blackHole').play('blackHole');
+        blackHole.create(this.enemy_pop_point[1][0], this.enemy_pop_point[1][1], 'blackHole').play('blackHole');
+        blackHole.create(this.enemy_pop_point[2][0], this.enemy_pop_point[2][1], 'blackHole').play('blackHole');
+        blackHole.create(this.enemy_pop_point[3][0], this.enemy_pop_point[3][1], 'blackHole').play('blackHole');
+
         let platforms = this.physics.add.staticGroup();
         platforms.create(400, 500, 'ground').setScale(3, 2).refreshBody();
         platforms.create(500, 350, 'ground').setScale(0.5, 1).refreshBody();
         platforms.create(50, 250, 'ground');
-        platforms.create(750, 220, 'ground');
+        platforms.create(800, 220, 'ground').setScale(0.8, 1);
 
         let player
         if (data.mode == 2) {
-            player = new Devil(this, 100, 100);  
+            player = new Devil(this, this.player_initial_point[0], this.player_initial_point[1]);  
         }
         else {
-            player = new Player(this, 100, 100);
+            player = new Player(this, this.player_initial_point[0], this.player_initial_point[1]);
+            this.physics.add.collider(player, platforms);
         }
         let enemies = new Enemies(this);
         this.physics.add.collider(enemies, platforms);
-        this.physics.add.collider(player, platforms);
 
         if (data.mode == 0) {
             this.playerHitEnemyCollider = this.physics.add.overlap(player, enemies, this.playerHitEnemy, null, this);
@@ -61,9 +67,9 @@ class SceneMain extends Phaser.Scene {
         }
     }
     popEnemy(enemies) {
-        let flag = Phaser.Math.Between(0, 1);
+        let d = Phaser.Math.Between(0, this.enemy_pop_point.length-1);
         this.popEnemySound.play();
-        enemies.generateEnemy(800, 400 - 300*flag, this.score);
+        enemies.generateEnemy(this.enemy_pop_point[d][0], this.enemy_pop_point[d][1], this.score);
     }
     playerHitEnemy(player, enemy) {
         this.gameOver = player.hitEnemy()
