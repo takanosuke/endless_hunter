@@ -19,7 +19,7 @@ class SceneOpening extends Phaser.Scene {
             bgm.stop();
             this.scene.start('SceneMain', { mode: 0 }); 
         }, this);
-        let mode1 = this.input.keyboard.createCombo('MODE1');
+        let mode1 = this.input.keyboard.createCombo('MUTEKI');
         this.input.keyboard.on('keycombomatch', function (event) {
             if (mode1.matched) {
                 alert("無敵モードで開始します。ランキングには反映されません。")
@@ -28,7 +28,7 @@ class SceneOpening extends Phaser.Scene {
                 this.scene.start('SceneMain', { mode: 1 });
             }
         }, this);
-        let mode2 = this.input.keyboard.createCombo('MODE2');
+        let mode2 = this.input.keyboard.createCombo('MAOU');
         this.input.keyboard.on('keycombomatch', function (event) {
             if (mode2.matched) {
                 alert("魔王モードで開始します。ランキングには反映されません。")
